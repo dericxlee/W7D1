@@ -12,6 +12,28 @@
   </head>
 
   <body>
+
+    
+    <% if logged_in? %>
+      <h2>Welcome, <%= current_user.username %></h2>
+      <form action=" <%= sessions_url %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+          <button>Log Out!</button>
+      </form>
+    <% else %>
+      <h2>Please log in!</h2>
+      <form action=" <%= sessions_url %>" method="POST">
+        <input Username type="text" name ='user[username]'>
+        <input Password type="password" name ='user[password]' >
+          <button>Log In!</button>
+      </form>
+      <h2>Sign up</h2>
+      <a href ="<%= new_user_url %>"> Sign Up
+      </a>
+      
+    <% end %>
+
+
     <nav class="main-nav">
       <h1><a href="<%= cats_url %>">99 Cats</a></h1>
     </nav>
